@@ -18,15 +18,31 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
   //       console.log(event.target);
   //     });
   //   });
+  useEffect(() => {
+    const input = document.getElementById("dexSearcher");
+    const btn = document.getElementById("dexSearch");
+    function handleKeyPress(event) {
+      if (event.key === "Enter") {
+        btn.click();
+      }
+    }
+
+    input.addEventListener("keypress", handleKeyPress);
+    // Limpiar el efecto cuando el componente se desmonta
+    return () => {
+      input.removeEventListener("keypress", handleKeyPress);
+    };
+  }, []); // Dependencia vacía para que el efecto se ejecute solo una vez
 
   return (
     <div className="md:px-14 flex flex-row justify-between items-center w-full h-[85px] bg-[#1D1D1D] py-2 px-6">
-      <span className="font-press-start-2p text-2xl text-white">Pokedex</span>
+      <span className=" text-2xl text-white navTitle">Pokedex</span>
       <div className="flex w-[220px] h-10 bg-none border border-solid border-white rounded-2xl overflow-hidden">
         <input
           onChange={handleChange}
           value={inputValue}
           type="text"
+          id="dexSearcher"
           placeholder="Name or id"
           className="selectable rounded-full m-0 h-full w-8/12 px-4 text-white font-mono bg-transparent border-none focus:border-none focus:border-transparent focus:ring-0 font-extralight text-sm -tracking-tighter"
         />
@@ -35,6 +51,7 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
           id="dexButton"
         >
           <button
+            id="dexSearch"
             onClick={search}
             className="w-full h-full transition-all m-auto text-center align-middle font-sans font-semibold text-cyan-500 hover:text-white hover:bg-[rgb(0,77,112)] focus:bg-[rgb(0,77,112)] active:bg-opacity-40 "
           >
