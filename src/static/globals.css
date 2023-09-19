@@ -1,6 +1,130 @@
+
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  transition: all;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
+  -webkit-transition: all;
+}
+.non-selectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.selectable {
+  -webkit-touch-callout: text; /* iOS Safari */
+  -webkit-user-select: text; /* Safari */
+  -khtml-user-select: text; /* Konqueror HTML */
+  -moz-user-select: text; /* Old versions of Firefox */
+  -ms-user-select: text; /* Internet Explorer/Edge */
+  user-select: text; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.weight {
+
+}
+.weight::before {
+  position: absolute;
+  bottom: -20px;
+  left: -15px;
+  content: "Weight";
+  font-weight: 400;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+}
+.height {
+
+}
+.height::before {
+  position: absolute;
+  bottom: -20px;
+  left: -15px;
+  content: "Height";
+  font-weight: 400;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+}
+
+
+.toLeft {
+  animation-name: fromZeroToLeft;
+  animation-duration: 0.6s;
+}
+.toRight {
+
+  animation-name: fromRightToZero;
+  animation-duration: 0.6s;
+}
+
+@keyframes shineGreen {
+  0% {
+    background-color: initial;
+  }
+  25% {
+    background-color: #00ff00;
+  }
+  50% {
+    background-color: initial;
+  }
+  75% {
+    background-color: #00ff00;
+  }
+  100% {
+    background-color: initial;
+  }
+}
+
+
+@keyframes fromRightToZero{
+  0% {
+    transform:translateX(150%);
+    opacity: 0;
+    -webkit-transform:translateX(150%);
+    -moz-transform:translateX(150%);
+    -ms-transform:translateX(150%);
+    -o-transform:translateX(150%);
+}
+  100% {
+    transform:translateX(0%);
+    opacity: 1;
+    -webkit-transform:translateX(0%);
+    -moz-transform:translateX(0%);
+    -ms-transform:translateX(0%);
+    -o-transform:translateX(0%);
+}
+}
+
+@keyframes fromZeroToLeft {
+  0% {
+    transform:translateX(0%);
+    opacity: 1;
+    -webkit-transform:translateX(0%);
+    -moz-transform:translateX(0%);
+    -ms-transform:translateX(0%);
+    -o-transform:translateX(0%);
+}
+  100% {
+    transform:translateX(-150%);
+    opacity: 0;
+    -webkit-transform:translateX(-150%);
+    -moz-transform:translateX(-150%);
+    -ms-transform:translateX(-150%);
+    -o-transform:translateX(-150%);
+}
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

@@ -1,4 +1,3 @@
-"use client";
 import "@/static/globals.css";
 import { Inter } from "next/font/google";
 
@@ -18,7 +17,7 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
       </head>
 
-      <body className="bg-gradient-to-tr from-cinnabar to-casablanca w-full h-screen">
+      <body className="bg-[#E8E8E8] w-full h-screen grid grid-flow-row relative justify-between grid-rows-page grid-cols-1 ">
         {children}
       </body>
     </html>

@@ -3,31 +3,22 @@ import { getPokemonById } from "../../services/api/pokemon";
 export default function BuscadorComponent({
   inputValue,
   setInputValue,
-  setPokeName,
+  handleSearch,
 }) {
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const search = (event) => {
     event.preventDefault();
     // aquí puedes manejar la búsqueda de tu Pokemon usando el inputValue
     console.log("Buscando Pokemon:", inputValue);
-    getPokemonById(inputValue)
-      .then((res) => {
-        const name =
-          String(res.name).charAt(0).toUpperCase() + String(res.name).slice(1);
-        setPokeName(name);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    handleSearch();
   };
 
   return (
     <div className="flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8">
-      <form onSubmit={handleSubmit} className="w-full max-w-lg">
+      <form onSubmit={search} className="w-full max-w-lg">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label
