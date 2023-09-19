@@ -21,23 +21,35 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
   useEffect(() => {
     const input = document.getElementById("dexSearcher");
     const btn = document.getElementById("dexSearch");
+    const apiLink = document.getElementById("apiLink");
+    const githubLink = document.getElementById("githubLink");
+    function handleClick(event) {
+      if (event.target === apiLink) {
+        window.open("https://github.com/voidexiled/pokedex-api/");
+      } else if (event.target === githubLink) {
+        window.open("https://github.com/voidexiled/pokedex/");
+      }
+    }
     function handleKeyPress(event) {
       if (event.key === "Enter") {
         btn.click();
       }
     }
-
+    apiLink.addEventListener("click", handleClick);
+    githubLink.addEventListener("click", handleClick);
     input.addEventListener("keypress", handleKeyPress);
     // Limpiar el efecto cuando el componente se desmonta
     return () => {
       input.removeEventListener("keypress", handleKeyPress);
+      apiLink.removeEventListener("click", handleClick);
+      githubLink.removeEventListener("click", handleClick);
     };
   }, []); // Dependencia vacía para que el efecto se ejecute solo una vez
 
   return (
     <div className="md:px-14 flex flex-row justify-between items-center w-full h-[85px] bg-[#1D1D1D] py-2 px-6">
       <span className=" text-2xl text-white navTitle">Pokedex</span>
-      <div className="flex w-[220px] h-10 bg-none border border-solid border-white rounded-2xl overflow-hidden">
+      <div className="flex w-[220px] lg:w-[320px] h-10 bg-none border border-solid border-white rounded-2xl overflow-hidden">
         <input
           onChange={handleChange}
           value={inputValue}
@@ -61,12 +73,21 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
       </div>
 
       <div className="flex justify-between w-[80px] md:gap-8 ">
-        <Image src={"/api.svg"} width={32} height={32} alt="API link"></Image>{" "}
         <Image
+          id="apiLink"
+          src={"/api.svg"}
+          width={32}
+          height={32}
+          alt="API link"
+          className="hover:cursor-pointer"
+        ></Image>
+        <Image
+          id="githubLink"
           src={"/github.svg"}
           width={32}
           height={32}
           alt="GITHUB link"
+          className="hover:cursor-pointer"
         ></Image>
       </div>
     </div>
