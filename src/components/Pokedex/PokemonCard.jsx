@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeartRed from "./assets/HeartRed";
-import Rectangle8 from "./assets/Rectangle8";
 import Image from "next/image";
-import chevronleft from "./chevronleft.svg";
-import BodyColumn from "./BodyColumn";
+import BodyColumn from "./assets/BodyColumn";
 
 const typeColors = {
   normal: "#A8A878",
@@ -35,7 +33,6 @@ export default function PokemonCard({
   const capitalize = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
-  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <>
@@ -87,15 +84,7 @@ export default function PokemonCard({
               />
             </span>
             <Image
-              // onMouseOver={() => setIsHovering(true)}
-              // onMouseOut={() => setIsHovering(false)}
               id="pokeImage"
-              // src={
-              //   currentPokemon &&
-              //   (isHovering
-              //     ? currentPokemon.sprites.back_default
-              //     : currentPokemon.sprites.front_default)
-              // }
               src={
                 (currentPokemon && currentPokemon.sprites.front_default) ||
                 "/pokemon_not_found.png"

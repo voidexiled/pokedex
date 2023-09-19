@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const api = process.env.PROD_API_URL;
-
 export async function getAllPokemon() {
   try {
     const response = await axios.get(

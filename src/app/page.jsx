@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import BuscadorComponent from "@/components/Input/BuscadorComponent";
-import Component1 from "@/components/Pokedex/Component1";
 import { getPokemonById } from "../services/api/pokemon";
 import PokemonCard from "@/components/Pokedex/PokemonCard";
 import { PokemonSchema } from "../services/lib/PokemonSchema";
