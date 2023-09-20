@@ -13,11 +13,11 @@ export default function Type({ type }) {
           backgroundColor: typeColor,
           boxShadow: " 0 0 6px 0px " + typeColor,
         }}
-        className={`type grid h-[20px] px-3 rounded-full text-sm align-middle text-center  ${firasans.className}`}
+        className={`type grid h-[20px] px-3 rounded-full text-sm align-middle text-center  ${firasans.className} `}
       >
         <span
           style={{ textShadow: `0 0 4px #1d1d1d` }}
-          className="text-[#d1d1d1] font-medium text-center align-middle m-auto"
+          className="text-[#d1d1d1] font-medium text-center align-middle m-auto text-opacity-[72%]"
         >
           {capitalize(type)}
         </span>

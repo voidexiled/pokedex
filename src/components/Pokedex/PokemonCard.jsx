@@ -126,10 +126,13 @@ export default function PokemonCard({
                     width={24}
                     height={24}
                     quality={100}
-                    className="transition-all "
+                    className="transition-all opacity-[72%] "
                   />
                 </span>
-                <span id="weightSpan" className="font-thin text-base">
+                <span
+                  id="weightSpan"
+                  className="font-thin text-base opacity-[72%]"
+                >
                   {currentPokemon && currentPokemon.weight / 10} kg
                 </span>
               </div>
@@ -141,10 +144,10 @@ export default function PokemonCard({
                     width={24}
                     height={24}
                     quality={100}
-                    className="transition-all"
+                    className="transition-all opacity-[72%]"
                   />
                 </span>
-                <span id="heightSpan" className="font-thin">
+                <span id="heightSpan" className="font-thin opacity-[72%]">
                   {currentPokemon && currentPokemon.height / 10} m
                 </span>
               </div>

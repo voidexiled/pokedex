@@ -9,7 +9,7 @@ export default function Moves({ moves }) {
           {moves.map((item, key) => {
             console.log(item);
             return (
-              <li key={key} className="">
+              <li key={key} className="opacity-[72%]">
                 {capitalize(space(item.ability.name))}
               </li>
             );
