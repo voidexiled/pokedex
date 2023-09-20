@@ -6,7 +6,7 @@ export default function Subtitle({ children, textColor }) {
       <h3
         style={{
           color: textColor,
-          textShadow: `0 0 2px #1d1d1d`,
+          textShadow: `0 0 1px rgba(15,15,15,0.18)`,
         }}
         className={` rounded-lg px-3 text-xl justify-center align-middle text-center font-extrabold `}
       >
