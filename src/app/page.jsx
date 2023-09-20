@@ -2,28 +2,22 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { getPokemonById } from "../services/api/pokemon";
+import { getPokemonById } from "@/services/api/pokemon";
 import PokemonCard from "@/components/Pokedex/PokemonCard";
-import { PokemonSchema } from "../services/lib/PokemonSchema";
-import NavBar from "../components/Nav/NavBar";
-const SEARCH_STATES = {
-  INITIAL: 0,
-  LOADING: 1,
-  SUCCESS: 2,
-  ERROR: 3,
-};
-const ledColors = {
-  error: "bg-[#E01111]",
-  success: "bg-[#00FF00]",
-  warning: "bg-[#FFA500]",
-  loading: "bg-[#0000FF]",
-  default: "bg-[#000000]",
-};
+import { PokemonSchema } from "@/services/lib/PokemonSchema";
+import NavBar from "@/components/Nav/NavBar";
+import { SEARCH_STATE } from "@/services/lib/SearchStates";
+import { LED_COLOR } from "@/services/lib/LedColors";
+
 export default function Main() {
   const [inputValue, setInputValue] = useState("");
   const [currentPokemon, setCurrentPokemon] = useState(PokemonSchema);
-  const [searchState, setSearchState] = useState(SEARCH_STATES.INITIAL);
-  const [ledColor, setLedColor] = useState(ledColors.default);
+  const [searchState, setSearchState] = useState(SEARCH_STATE.INITIAL);
+  const [ledColor, setLedColor] = useState(LED_COLOR.default);
+
+  useEffect(() => {
+    console.log(ledColor);
+  }, [ledColor]);
 
   async function searchNextPokemon() {
     console.log("Buscando Siguiente Pokemon");
@@ -35,18 +29,18 @@ export default function Main() {
           .then((data) => {
             console.log(data);
             if (data && data.name) {
-              setSearchState(SEARCH_STATES.SUCCESS);
+              setSearchState(SEARCH_STATE.SUCCESS);
 
               console.log(data);
             } else {
-              setSearchState(SEARCH_STATES.ERROR);
+              setSearchState(SEARCH_STATE.ERROR);
             }
 
             beginAnimation(data);
           })
           .catch((err) => {
             console.log(err);
-            setSearchState(SEARCH_STATES.ERROR);
+            setSearchState(SEARCH_STATE.ERROR);
           });
       }
     }
@@ -61,31 +55,31 @@ export default function Main() {
           .then((data) => {
             console.log(data);
             if (data && data.name) {
-              setSearchState(SEARCH_STATES.SUCCESS);
+              setSearchState(SEARCH_STATE.SUCCESS);
 
               console.log(data);
             } else {
-              setSearchState(SEARCH_STATES.ERROR);
+              setSearchState(SEARCH_STATE.ERROR);
             }
 
             beginAnimation(data);
           })
           .catch((err) => {
             console.log(err);
-            setSearchState(SEARCH_STATES.ERROR);
+            setSearchState(SEARCH_STATE.ERROR);
           });
       }
     }
   }
   useEffect(() => {
-    if (searchState === SEARCH_STATES.ERROR) {
-      setLedColor(ledColors.error);
-    } else if (searchState === SEARCH_STATES.SUCCESS) {
-      setLedColor(ledColors.success);
-    } else if (searchState === SEARCH_STATES.LOADING) {
-      setLedColor(ledColors.loading);
+    if (searchState === SEARCH_STATE.ERROR) {
+      setLedColor(LED_COLOR.error);
+    } else if (searchState === SEARCH_STATE.SUCCESS) {
+      setLedColor(LED_COLOR.success);
+    } else if (searchState === SEARCH_STATE.LOADING) {
+      setLedColor(LED_COLOR.loading);
     } else {
-      setLedColor(ledColors.default);
+      setLedColor(LED_COLOR.default);
     }
   }, [searchState]);
 
@@ -96,10 +90,18 @@ export default function Main() {
     var weightLabel = document.getElementById("weightSpan");
     var heightLabel = document.getElementById("heightSpan");
     var dexNumber = document.getElementById("dexNumber");
+    var typesObj = document.getElementsByClassName("type");
+    var movesObj = document.getElementsByClassName("moves");
     console.log("EPAAA\n" + data);
 
     const opacityElements = [pokemonTitle, weightLabel, heightLabel, dexNumber];
-
+    for (let i = 0; i < typesObj.length; i++) {
+      opacityElements.push(typesObj[i]);
+      // typesObj[i].style.color = "red";
+    }
+    for (let i = 0; i < movesObj.length; i++) {
+      opacityElements.push(movesObj[i]);
+    }
     pokemonImage.classList.add("animate-fromZeroToLeft-400");
     //pokeCard.classList.add("after:animate-shineGreen");
     pokemonImage.addEventListener("animationend", (event) => {
@@ -133,24 +135,24 @@ export default function Main() {
   // create a function
   const handleSearch = async () => {
     var myImage = document.getElementById("pokeImage");
-    setSearchState(SEARCH_STATES.LOADING);
+    setSearchState(SEARCH_STATE.LOADING);
     console.log(inputValue);
     await getPokemonById(inputValue)
       .then((data) => {
         console.log(data);
         if (data && data.name) {
-          setSearchState(SEARCH_STATES.SUCCESS);
+          setSearchState(SEARCH_STATE.SUCCESS);
 
           console.log(data);
         } else {
-          setSearchState(SEARCH_STATES.ERROR);
+          setSearchState(SEARCH_STATE.ERROR);
         }
 
         beginAnimation(data);
       })
       .catch((err) => {
         console.log(err);
-        setSearchState(SEARCH_STATES.ERROR);
+        setSearchState(SEARCH_STATE.ERROR);
       });
   };
 

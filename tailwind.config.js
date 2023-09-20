@@ -44,6 +44,7 @@ module.exports = {
       gridTemplateRows: {
         page: "80px 1fr 110px",
         "about-card": "40px 1fr 1fr",
+        moves: "50px 40px 40px 1fr",
       },
       keyframes: {
         shineGreen: {

@@ -1,28 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeartRed from "./assets/HeartRed";
 import Image from "next/image";
 import BodyColumn from "./assets/BodyColumn";
-
-const typeColors = {
-  normal: "#A8A878",
-  fire: "#F08030",
-  water: "#6890F0",
-  electric: "#F8D030",
-  grass: "#78C850",
-  ice: "#98D8D8",
-  fighting: "#C03028",
-  poison: "#A040A0",
-  ground: "#E0C068",
-  flying: "#A890F0",
-  psychic: "#F85888",
-  bug: "#A8B820",
-  rock: "#B8A038",
-  ghost: "#705898",
-  dragon: "#7038F8",
-  dark: "#705848",
-  steel: "#B8B8D0",
-  fairy: "#EE99AC",
-};
+import Subtitle from "./assets/Subtitle";
+import { TYPE, TYPE_COLOR } from "../../services/lib/PokemonTypes";
+import Type from "./assets/Type";
+import Moves from "./assets/Moves";
 
 export default function PokemonCard({
   currentPokemon,
@@ -30,9 +13,30 @@ export default function PokemonCard({
   nextPokemon,
   previousPokemon,
 }) {
+  const [types, setTypes] = useState([]);
+  const [textColor, setTextColor] = useState("#1d1d1d");
   const capitalize = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
+
+  const handleTextColor = (type) => {
+    if (type) {
+      const typeName = type.type.name;
+      const typeColor = TYPE_COLOR[typeName];
+      setTextColor(typeColor);
+    }
+  };
+  useEffect(() => {
+    if (currentPokemon) {
+      setTypes(currentPokemon.types);
+
+      handleTextColor(types[0]);
+    }
+  }, [types, currentPokemon]);
+  useEffect(() => {
+    const camera = document.getElementById("led");
+    camera.style.background = ledColor;
+  }, [ledColor]);
 
   return (
     <>
@@ -52,7 +56,8 @@ export default function PokemonCard({
             className="absolute bg-white rounded-full h-[18px] w-[62px] top-[14px] left-2/4 -translate-x-2/4 flex flex-row justify-between items-center px-2"
           >
             <span
-              className={`${ledColor} transition-all w-2 h-2 rounded-full opacity-[72%]`}
+              id="led"
+              className={`transition-all w-2 h-2 rounded-full opacity-[72%]`}
             ></span>
             <span className="bg-[#404040] opacity-[72%] h-2 w-6 rounded-full"></span>
             <span
@@ -106,15 +111,13 @@ export default function PokemonCard({
           </div>
           <div
             id="StatsViewer"
-            className="relative bg-stats-card bg-contain bg-center overflow-hidden bg-no-repeat  grid grid-flow-col grid-cols-custom mx-1 h-[290px] text-black pt-16"
+            className="relative bg-stats-card bg-contain bg-center overflow-hidden bg-no-repeat  grid grid-flow-col grid-cols-custom mx-1 h-[290px] text-black pt-10"
           >
             <BodyColumn
               id="about"
               className="grid-flow-row grid-rows-about-card"
             >
-              <h3 className=" text-xl justify-center align-middle text-center font-extrabold text-green-800">
-                About
-              </h3>
+              <Subtitle textColor={textColor}> About</Subtitle>
               <div className="relative flex gap-x-1 weight ">
                 <span>
                   <Image
@@ -146,9 +149,20 @@ export default function PokemonCard({
                 </span>
               </div>
             </BodyColumn>
-            <div className="col-span-1  bg-[#1d1d1d] bg-opacity-[30%] rounded-full max-h-[170px] mt-3"></div>
-            <BodyColumn id="typeAndAbilitys" className="">
-              aa
+            <div className="col-span-1  bg-[#1d1d1d] bg-opacity-[30%] rounded-full max-h-[225px] mt-3"></div>
+            <BodyColumn
+              id="typeAndAbilitys"
+              className="grid-flow-row grid-rows-moves "
+            >
+              <Subtitle textColor={textColor}>Types</Subtitle>
+              <div className="flex  w-full h-[24px] justify-center gap-x-2 items-center">
+                {types.map((key, type) => {
+                  console.log(key);
+                  return <Type key={type} type={key.type.name}></Type>;
+                })}
+              </div>
+              <Subtitle textColor={textColor}>Moves</Subtitle>
+              <Moves moves={currentPokemon && currentPokemon.abilities}></Moves>
             </BodyColumn>
           </div>
         </div>
