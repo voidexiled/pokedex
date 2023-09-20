@@ -1,4 +1,5 @@
 import React from "react";
+import { capitalize, space } from "../../../services/lib/Text";
 
 export default function Moves({ moves }) {
   return (
@@ -9,7 +10,7 @@ export default function Moves({ moves }) {
             console.log(item);
             return (
               <li key={key} className="">
-                {item.ability.name}
+                {capitalize(space(item.ability.name))}
               </li>
             );
           })}
