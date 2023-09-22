@@ -92,10 +92,10 @@ module.exports = {
         ...Array.from({ length: 16 }).reduce((acc, _, index) => {
           acc[`fromRightToZero-${index * 100}`] = `fromRightToZero-${
             index * 100
-          } 0.6s ease-in-out`;
+          } 0.45s ease-in-out`;
           acc[`fromZeroToLeft-${index * 100}`] = `fromZeroToLeft-${
             index * 100
-          } 0.6s ease-in-out`;
+          } 0.45s ease-in-out`;
           return acc;
         }, {}),
       },

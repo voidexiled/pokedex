@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 
 import { getPokemonById } from "@/services/api/pokemon";
 import PokemonCard from "@/components/Pokedex/PokemonCard";
@@ -8,30 +7,23 @@ import { PokemonSchema } from "@/services/lib/PokemonSchema";
 import NavBar from "@/components/Nav/NavBar";
 import { SEARCH_STATE } from "@/services/lib/SearchStates";
 import { LED_COLOR } from "@/services/lib/LedColors";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { AnimatePresence } from "framer-motion";
 export default function Main() {
   const [inputValue, setInputValue] = useState("");
   const [currentPokemon, setCurrentPokemon] = useState(PokemonSchema);
   const [searchState, setSearchState] = useState(SEARCH_STATE.INITIAL);
   const [ledColor, setLedColor] = useState(LED_COLOR.default);
 
-  useEffect(() => {
-    console.log(ledColor);
-  }, [ledColor]);
-
   async function searchNextPokemon() {
-    console.log("Buscando Siguiente Pokemon");
     if (currentPokemon) {
-      console.log(currentPokemon.number);
       if (currentPokemon.number < 1011) {
         const nextId = currentPokemon.number + 1;
         await getPokemonById(nextId)
           .then((data) => {
-            console.log(data);
             if (data && data.name) {
               setSearchState(SEARCH_STATE.SUCCESS);
-
-              console.log(data);
             } else {
               setSearchState(SEARCH_STATE.ERROR);
             }
@@ -97,13 +89,12 @@ export default function Main() {
     const opacityElements = [pokemonTitle, weightLabel, heightLabel, dexNumber];
     for (let i = 0; i < typesObj.length; i++) {
       opacityElements.push(typesObj[i]);
-      // typesObj[i].style.color = "red";
     }
     for (let i = 0; i < movesObj.length; i++) {
       opacityElements.push(movesObj[i]);
     }
     pokemonImage.classList.add("animate-fromZeroToLeft-400");
-    //pokeCard.classList.add("after:animate-shineGreen");
+
     pokemonImage.addEventListener("animationend", (event) => {
       if (event.animationName == "fromZeroToLeft-400") {
         setCurrentPokemon(data);
@@ -113,9 +104,6 @@ export default function Main() {
       if (event.animationName == "fromRightToZero-400") {
         pokemonImage.classList.remove("animate-fromRightToZero-400");
       }
-      /*if (event.animationName == "shineGreen") {
-        pokeCard.classList.remove("after:animate-shineGreen");
-      }*/
     });
 
     opacityElements.map((element) => {
@@ -157,12 +145,24 @@ export default function Main() {
   };
 
   return (
-    <>
+    <AnimatePresence>
+      <ToastContainer
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <NavBar
         handleSearch={handleSearch}
         inputValue={inputValue}
         setInputValue={setInputValue}
       ></NavBar>
+
       <div className="flex w-full justify-center items-center">
         <PokemonCard
           currentPokemon={currentPokemon}
@@ -171,12 +171,11 @@ export default function Main() {
           previousPokemon={searchPreviousPokemon}
         ></PokemonCard>
       </div>
-
       <footer id="copyright " className="grid ">
         <span className="m-auto">
           &copy; 2023 Jesus Jalomo. All rights reserved.
         </span>
       </footer>
-    </>
+    </AnimatePresence>
   );
 }

@@ -97,8 +97,8 @@ export default function PokemonCard({
               alt="Imagen Actual del Pokemon"
               width={220}
               height={220}
-              quality="100"
-              className="  transition-all transform ease-in-out "
+              quality="65"
+              className="pokeImg transition-all transform ease-in-out "
             ></Image>
             <Image
               src="/chevron-right.svg"

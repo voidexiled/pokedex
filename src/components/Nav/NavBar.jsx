@@ -1,23 +1,32 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-
+import { toast } from "react-toastify";
 export default function NavBar({ inputValue, setInputValue, handleSearch }) {
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
   const search = () => {
-    // aquí puedes manejar la búsqueda de tu Pokemon usando el inputValue
-    console.log("Buscando Pokemon:", inputValue);
-    handleSearch();
+    if (inputValue.length > 0) {
+      console.log("Buscando Pokemon:", inputValue);
+      handleSearch();
+    } else {
+      showToast("Please enter a valid name or id");
+    }
   };
+  function showToast(msg) {
+    toast.error(msg, {
+      position: "bottom-center",
+      id: "invalid",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
 
-  //   useEffect(() => {
-  //     const dexBtn = document.getElementById("dexButton");
-  //     dexBtn.addEventListener("click", function (event) {
-  //       console.log(event);
-  //       console.log(event.target);
-  //     });
-  //   });
   useEffect(() => {
     const input = document.getElementById("dexSearcher");
     const btn = document.getElementById("dexSearch");
@@ -38,13 +47,13 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
     apiLink.addEventListener("click", handleClick);
     githubLink.addEventListener("click", handleClick);
     input.addEventListener("keypress", handleKeyPress);
-    // Limpiar el efecto cuando el componente se desmonta
+
     return () => {
       input.removeEventListener("keypress", handleKeyPress);
       apiLink.removeEventListener("click", handleClick);
       githubLink.removeEventListener("click", handleClick);
     };
-  }, []); // Dependencia vacía para que el efecto se ejecute solo una vez
+  }, []);
 
   return (
     <div className="md:px-14 flex flex-row justify-between items-center w-full h-[85px] bg-[#1D1D1D] py-2 px-6">

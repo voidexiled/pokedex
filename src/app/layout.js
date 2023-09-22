@@ -1,6 +1,8 @@
 import "@/static/globals.css";
 import { Inter } from "next/font/google";
 import favicon from "@/app/favicon.ico";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
