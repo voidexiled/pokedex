@@ -48,9 +48,9 @@ export default function PokemonCard({
           id="CardHeader"
           className=" p-4 flex flex-row justify-between items-center h-14"
         >
-          <span id="pokemonTitle" className="font-bold text-lg ">
+          <h2 id="pokemonTitle" className="font-bold text-lg ">
             {(currentPokemon && capitalize(currentPokemon.name)) || "Not Found"}
-          </span>
+          </h2>
           <div
             id="camera"
             className="absolute bg-white rounded-full h-[18px] w-[62px] top-[14px] left-2/4 -translate-x-2/4 flex flex-row justify-between items-center px-2"
@@ -65,9 +65,9 @@ export default function PokemonCard({
             ></span>
           </div>
           <div className="flex flex-row gap-6 h-full items-center justify-center">
-            <span id="dexNumber" className="font-bold text-sm opacity-75">
+            <h3 id="dexNumber" className="font-bold text-sm opacity-75">
               {(currentPokemon && "#" + currentPokemon.number) || "#???"}
-            </span>
+            </h3>
             <div className="p-2 bg-white rounded-md group transition-all box-border">
               <HeartRed className="w-4 h-4 m-auto transition-all group-hover:scale-[145%] group-active:scale-[130%]" />
             </div>

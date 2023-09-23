@@ -57,7 +57,7 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
 
   return (
     <div className="md:px-14 flex flex-row justify-between items-center w-full h-[85px] bg-[#1D1D1D] py-2 px-6">
-      <span className=" text-2xl text-white navTitle">Pokedex</span>
+      <h1 className=" text-2xl text-white navTitle">Pokedex</h1>
       <div className="flex w-[220px] lg:w-[320px] h-10 bg-none border border-solid border-white rounded-2xl overflow-hidden">
         <input
           onChange={handleChange}
