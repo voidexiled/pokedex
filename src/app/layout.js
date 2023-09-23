@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           content="Pokedex, Nextjs, React, Pokemon, Charizard, Pikachu, Ditto, Pidgeotto, Raichu, Entei, Zapdos, Moltres, Suicuine, Eevee, Jolteon, Snorlax, Pokemon game, poke game, pokemon news, pokemon team, poke team, latest news pokemon, play pokemon, mewtwo, mew, mega, poki"
         />
         <meta name="robots" content="index, follow" />
-        <meta name="language" content="English, Español" />
+        <meta name="language" content="en, en-us" />
         <meta name="publisher" content="Jesus Jalomo" />
         <meta name="author" content="Jesus Jalomo" />
 
