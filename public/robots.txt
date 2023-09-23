@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://void-pokedex.vercel.app
+
+# Sitemaps
+Sitemap: https://void-pokedex.vercel.app/sitemap.xml
