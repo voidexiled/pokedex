@@ -81,7 +81,8 @@ export default function PokemonCard({
             <span>
               <Image
                 src="/chevron-left.svg"
-                alt="An SVG of an eye"
+                alt="Previous pokemon"
+                title="Previous pokemon"
                 width={64}
                 height={64}
                 className="transition-all hover:cursor-pointer hover:scale-125"
@@ -94,15 +95,17 @@ export default function PokemonCard({
                 (currentPokemon && currentPokemon.sprites.front_default) ||
                 "/pokemon_not_found.png"
               }
-              alt="Imagen Actual del Pokemon"
+              alt={`${currentPokemon && currentPokemon.name} Image}`}
               width={220}
               height={220}
               quality="65"
               className="pokeImg transition-all transform ease-in-out "
+              title={`${currentPokemon && currentPokemon.name} Image`}
             ></Image>
             <Image
               src="/chevron-right.svg"
-              alt="An SVG of an eye"
+              alt="Next pokemon"
+              title="Next pokemon"
               width={64}
               height={64}
               className="transition-all hover:cursor-pointer hover:scale-125"
@@ -122,7 +125,8 @@ export default function PokemonCard({
                 <span>
                   <Image
                     src="/weight.svg"
-                    alt="An SVG of an eye"
+                    alt="Weight image"
+                    title="Weight image"
                     width={24}
                     height={24}
                     quality={100}
@@ -140,7 +144,8 @@ export default function PokemonCard({
                 <span>
                   <Image
                     src="/height.svg"
-                    alt="An SVG of an eye"
+                    alt="Height image"
+                    title="Height image"
                     width={24}
                     height={24}
                     quality={100}

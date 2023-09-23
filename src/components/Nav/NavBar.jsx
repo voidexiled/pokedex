@@ -30,28 +30,17 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
   useEffect(() => {
     const input = document.getElementById("dexSearcher");
     const btn = document.getElementById("dexSearch");
-    const apiLink = document.getElementById("apiLink");
-    const githubLink = document.getElementById("githubLink");
-    function handleClick(event) {
-      if (event.target === apiLink) {
-        window.open("https://github.com/voidexiled/pokedex-api/");
-      } else if (event.target === githubLink) {
-        window.open("https://github.com/voidexiled/pokedex/");
-      }
-    }
+
     function handleKeyPress(event) {
       if (event.key === "Enter") {
         btn.click();
       }
     }
-    apiLink.addEventListener("click", handleClick);
-    githubLink.addEventListener("click", handleClick);
+
     input.addEventListener("keypress", handleKeyPress);
 
     return () => {
       input.removeEventListener("keypress", handleKeyPress);
-      apiLink.removeEventListener("click", handleClick);
-      githubLink.removeEventListener("click", handleClick);
     };
   }, []);
 
@@ -82,22 +71,28 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
       </div>
 
       <div className="flex justify-between w-[80px] md:gap-8 ">
-        <Image
-          id="apiLink"
-          src={"/api.svg"}
-          width={32}
-          height={32}
-          alt="API link"
-          className="hover:cursor-pointer"
-        ></Image>
-        <Image
-          id="githubLink"
-          src={"/github.svg"}
-          width={32}
-          height={32}
-          alt="GITHUB link"
-          className="hover:cursor-pointer"
-        ></Image>
+        <a href="https://github.com/voidexiled/pokedex-api/" target="_blank">
+          <Image
+            id="apiLink"
+            src={"/api.svg"}
+            width={32}
+            height={32}
+            alt="API link"
+            title="API link"
+            className="hover:cursor-pointer"
+          ></Image>
+        </a>
+        <a href="https://github.com/voidexiled/pokedex/" target="_blank">
+          <Image
+            id="githubLink"
+            src={"/github.svg"}
+            width={32}
+            height={32}
+            alt="GITHUB link"
+            title="GITHUB link"
+            className="hover:cursor-pointer"
+          ></Image>
+        </a>
       </div>
     </div>
   );

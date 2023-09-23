@@ -9,10 +9,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pokedex</title>
         <meta name="title" content="Pokedex" />
         <meta name="description" content="Pokedex made with nextjs" />
+        <meta
+          name="keywords"
+          content="Pokedex, Nextjs, React, Pokemon, Charizard, Pikachu, Ditto, Pidgeotto, Raichu, Entei, Zapdos, Moltres, Suicuine, Eevee, Jolteon, Snorlax"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English, Español" />
+        <meta name="publisher" content="Jesus Jalomo" />
+        <meta name="author" content="Jesus Jalomo" />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://void-pokedex.vercel.app/" />
@@ -37,7 +44,12 @@ export default function RootLayout({ children }) {
           property="twitter:image"
           content="https://jesusjalomo.vercel.app/1.png"
         />
-        <link rel="icon" favicon={favicon} />
+        <meta http-equiv="Cache-control" content="public" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link
+          rel="icon"
+          favicon="https://void-pokedex.vercel.app/pokeball-512-256624.png"
+        />
       </head>
 
       <body className="bg-[#E8E8E8] w-full h-screen grid grid-flow-row relative justify-between grid-rows-page grid-cols-1 ">

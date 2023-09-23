@@ -172,9 +172,9 @@ export default function Main() {
         ></PokemonCard>
       </div>
       <footer id="copyright " className="grid ">
-        <span className="m-auto">
-          &copy; 2023 Jesus Jalomo. All rights reserved.
-        </span>
+        <p className="m-auto">
+          Copyright &copy; 2023 Jesus Jalomo. All rights reserved.
+        </p>
       </footer>
     </AnimatePresence>
   );
