@@ -71,25 +71,35 @@ export default function NavBar({ inputValue, setInputValue, handleSearch }) {
       </div>
 
       <div className="flex justify-between w-[80px] md:gap-8 ">
-        <a href="https://github.com/voidexiled/pokedex-api/" target="_blank">
+        <a
+          href="https://github.com/voidexiled/pokedex-api/"
+          target="_blank"
+          title="redirect to api github repository"
+          className="w-[32px] h-[32px]"
+        >
           <Image
             id="apiLink"
             src={"/api.svg"}
             width={32}
             height={32}
-            alt="API link"
-            title="API link"
+            alt="API repository link"
+            title="API repository link"
             className="hover:cursor-pointer"
           ></Image>
         </a>
-        <a href="https://github.com/voidexiled/pokedex/" target="_blank">
+        <a
+          href="https://github.com/voidexiled/pokedex/"
+          title="redirect to github repository"
+          target="_blank"
+          className="w-[32px] h-[32px]"
+        >
           <Image
             id="githubLink"
             src={"/github.svg"}
             width={32}
             height={32}
-            alt="GITHUB link"
-            title="GITHUB link"
+            alt="GITHUB repository link"
+            title="GITHUB repository link"
             className="hover:cursor-pointer"
           ></Image>
         </a>
