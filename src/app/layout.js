@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import favicon from "@/app/favicon.ico";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
@@ -54,6 +55,7 @@ export default function RootLayout({ children }) {
 
       <body className="bg-[#E8E8E8] w-full h-screen grid grid-flow-row relative justify-between grid-rows-page grid-cols-1 ">
         {children}
+        <Analytics />
       </body>
     </html>
   );
