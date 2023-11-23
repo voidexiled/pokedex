@@ -3,7 +3,7 @@ import axios from "axios";
 export async function getAllPokemon() {
   try {
     const response = await axios.get(
-      "https://void-pokedex-7431e6f5e637.herokuapp.com/pokemon/"
+      "http://pokedex-api-production-a04c.up.railway.app/pokemon/"
     );
     const data = response.data;
     return data;
@@ -17,7 +17,7 @@ export async function getPokemonById(number) {
   try {
     if (toString(number).length > 0) {
       const response = await axios.get(
-        "https://void-pokedex-7431e6f5e637.herokuapp.com/pokemon/" + number
+        "http://pokedex-api-production-a04c.up.railway.app/pokemon/" + number
       );
       const data = response.data;
       return data;
