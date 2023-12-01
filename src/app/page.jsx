@@ -172,9 +172,7 @@ export default function Main() {
         ></PokemonCard>
       </div>
       <footer id="copyright " className="grid ">
-        <p className="m-auto">
-          Copyright &copy; 2023 Jesus Jalomo. All rights reserved.
-        </p>
+        <p className="m-auto">Desarrollado con ❤️ por Jesus Jalomo.</p>
       </footer>
     </AnimatePresence>
   );
